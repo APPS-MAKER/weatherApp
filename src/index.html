@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Ionic App</title>
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
@@ -30,21 +31,114 @@
   <link href="build/main.css" rel="stylesheet">
   <!--多色图标-->
   <script src="assets/iconfont/iconfont-color.js"></script>
+  <!--新浪 IP 定位接口-->
+  <!--<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>-->
+  <!--<script>-->
+  <!--window.myLocation = remote_ip_info['city'];-->
+  <!--</script>-->
+  <!--高德地图-->
+  <!-- gaode map -->
+  <script type="text/javascript"
+          src="http://webapi.amap.com/maps?v=1.4.4&key=5951fdba40b4ba0686a65795e05f1ac2&plugin=AMap.Geocoder"></script>
+  <script>
+    window.onload = function () {
+      //    h5坐标
+//      if (navigator.geolocation) {
+//        alert('浏览器支持html5 geolocation');
+//        navigator.geolocation.getCurrentPosition(onOK, one);
+//      } else {
+//        alert('浏览器不支持html5 geolocation');
+//      }
+//
+//      function onOK(position) {
+//        alert('进入ok');
+        const lnglatXY = [28.131348, 112.99518];
+        alert('经纬度坐标是' + lnglatXY[0] + ',,,' + lnglatXY[1]);
+//      function regeocoder() {  //逆地理编码
+        var geocoder = new AMap.Geocoder({
+          radius: 100000,
+          extensions: "all"
+        });
+        alert('new 这里出错了吗');
+        alert(geocoder);
+        geocoder.getAddress(lnglatXY, function (status, result) {
+          alert('getAddress这里出错了吗');
+          alert('status状态是' + status);
+          alert('result的info是' + result.info);
+          alert(result);
+//          if (status === 'complete') {
+            alert('status这里出错了吗');
+            geocoder_CallBack(result);
+//          }
+        });
+//      var marker = new AMap.Marker({  //加点
+//        map: map,
+//        position: lnglatXY
+//      });
+//      map.setFitView();
+//      }
+        function geocoder_CallBack(data) {
+          alert('callback这里出错了吗');
+          const address = data.regeocode.formattedAddress; //返回地址描述
+//        document.getElementById("result").innerHTML = address;
+          console.log(address);
+          alert(address);
+        }
+//      }
+
+      function one(e) {
+        alert('进入出错了');
+        console.log(e);
+      }
+    }
+
+    //    const myAMap = AMap.Geocoder.getLocation;
+    //    console.log(myAMap);
+  </script>
+  <!--
+   <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=您申请的key值&plugin=AMap.Geocoder"></script>
+  <script type="text/javascript">
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        zoom: 18
+      }),
+      lnglatXY = [116.396574, 39.992706]; //已知点坐标
+    function regeocoder() {  //逆地理编码
+      var geocoder = new AMap.Geocoder({
+        radius: 1000,
+        extensions: "all"
+      });
+      geocoder.getAddress(lnglatXY, function(status, result) {
+        if (status === 'complete' && result.info === 'OK') {
+          geocoder_CallBack(result);
+        }
+      });
+      var marker = new AMap.Marker({  //加点
+        map: map,
+        position: lnglatXY
+      });
+      map.setFitView();
+    }
+    function geocoder_CallBack(data) {
+      var address = data.regeocode.formattedAddress; //返回地址描述
+      document.getElementById("result").innerHTML = address;
+    }
+  </script>-->
 </head>
 <body>
 
-  <!-- Ionic's root component and where the app will load -->
-  <ion-app></ion-app>
+<!-- Ionic's root component and where the app will load -->
+<ion-app></ion-app>
 
-  <!-- The polyfills js is generated during the build process -->
-  <script src="build/polyfills.js"></script>
+<!-- The polyfills js is generated during the build process -->
+<script src="build/polyfills.js"></script>
 
-  <!-- The vendor js is generated during the build process
-       It contains all of the dependencies in node_modules -->
-  <script src="build/vendor.js"></script>
+<!-- The vendor js is generated during the build process
+     It contains all of the dependencies in node_modules -->
+<script src="build/vendor.js"></script>
 
-  <!-- The main bundle js is generated during the build process -->
-  <script src="build/main.js"></script>
+<!-- The main bundle js is generated during the build process -->
+<script src="build/main.js"></script>
 
 </body>
 </html>

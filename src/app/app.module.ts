@@ -1,24 +1,37 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
 
-import { EventsPage } from '../pages/events/events';
-import { UserPage } from '../pages/user/user';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import {EventsPage} from '../pages/events/events';
+import {UserPage} from '../pages/user/user';
+import {HomePage} from '../pages/home/home';
+import {TabsPage} from '../pages/tabs/tabs';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 // 自定义组件引用
-import { ComponentsModule } from '../components/components.module';
+import {ComponentsModule} from '../components/components.module';
 // 自定义页面引用
-import { TestPage } from '../pages/test/test';
+import {TestPage} from '../pages/test/test';
 // 自定义管道（pipe）引用
-import { PipesModule } from "../pipes/pipes.module";
+import {PipesModule} from "../pipes/pipes.module";
 // providers(service)引用
-import { TestServiceProvider } from '../providers/test-service/test-service';
+import {TestServiceProvider} from '../providers/test-service/test-service';
+
+// HTTP服务
+import {HttpClientModule} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+
+// 翻译插件
+import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateHttpLoader(http) {
+  // http = new http();
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -36,7 +49,16 @@ import { TestServiceProvider } from '../providers/test-service/test-service';
     IonicModule.forRoot(MyApp),
     ComponentsModule,
     // 管道集合
-    PipesModule
+    PipesModule,
+    // HTTP服务
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateHttpLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,4 +77,5 @@ import { TestServiceProvider } from '../providers/test-service/test-service';
     TestServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
