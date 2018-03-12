@@ -25,3 +25,8 @@
      normalize.css 中也包含这行 */
   overflow: hidden;
 }
+
+//头部标题样式修改
+.toolbar-title-md, .toolbar-title-ios{
+  font-size:1.5rem;
+}

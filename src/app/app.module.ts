@@ -11,22 +11,27 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
+// HTTP服务
+import {HttpClientModule} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+
 // 自定义组件引用
 import {ComponentsModule} from '../components/components.module';
-// 自定义页面引用
-import {TestPage} from '../pages/test/test';
+// 自定义页面引用 - 城市管理
+import {CityCtrPage} from "../pages/city-ctr/city-ctr";
+// 搜索城市
+import {SearchCityPage} from "../pages/search-city/search-city";
+
 // 自定义管道（pipe）引用
 import {PipesModule} from "../pipes/pipes.module";
 // providers(service)引用
 import {TestServiceProvider} from '../providers/test-service/test-service';
 
-// HTTP服务
-import {HttpClientModule} from "@angular/common/http";
-import {HttpClient} from '@angular/common/http';
-
 // 翻译插件
 import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// 定位service
+import { LocationProvider } from '../providers/location/location';
 
 export function createTranslateHttpLoader(http) {
   // http = new http();
@@ -41,7 +46,8 @@ export function createTranslateHttpLoader(http) {
     HomePage,
     TabsPage,
     // 新增的页面
-    TestPage
+    CityCtrPage, //城市管理
+    SearchCityPage // 城市搜索
 
   ],
   imports: [
@@ -68,13 +74,15 @@ export function createTranslateHttpLoader(http) {
     HomePage,
     TabsPage,
     // 我也不知道为什么要在两个地方都加
-    TestPage
+    CityCtrPage, //城市管理
+    SearchCityPage // 城市搜索
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TestServiceProvider
+    TestServiceProvider,
+    LocationProvider
   ]
 })
 export class AppModule {

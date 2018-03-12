@@ -1,0 +1,39 @@
+<!--
+  Generated template for the SearchCityPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>新增城市</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <h4 class="title">世界，一个触碰的距离...</h4>
+  <div class="inp-wrapper">
+    <ion-item>
+      <ion-label floating>搜索城市关键字</ion-label>
+      <ion-input [(ngModel)]="keyWord" type="text" value=""></ion-input>
+    </ion-item>
+    <button class="search-btn" ion-button icon-only small (click)="searchCity()">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <div class="hot-city">
+    <p>热门城市：</p>
+    <button ion-button round outline small *ngFor="let item of hotCitys" (click)="selectCity(item)">
+      {{item}}
+    </button>
+  </div>
+  <div class="search-res" [hidden]="!searchRes">
+    <p>搜索结果：</p>
+    <div class="nullTip" [hidden]="searchRes && searchRes.length">未找到相关城市，请确认城市名无误</div>
+    <button ion-button round outline small *ngFor="let item of searchRes" (click)="selectCity(item)">
+      {{item}}
+    </button>
+  </div>
+</ion-content>

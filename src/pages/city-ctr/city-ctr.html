@@ -1,0 +1,32 @@
+<!--
+  Generated template for the CityCtrPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goSearchCityPage()">
+        <ion-icon style="font-size: 30px;" name="ios-create-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>城市管理</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="刷新中...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-item class="ip-item" (click)="handelSelectCity(IPCityInfo)">
+    <ion-icon class="side-icon" name="ios-locate-outline" item-start></ion-icon>
+    <h2 *ngIf="IPCityInfo">定位城市：{{IPCityInfo.city}}</h2>
+  </ion-item>
+  <p padding-horizontal>历史选择的城市：</p>
+  <slide-list [recivedData]="listObj" (onDel)="handelDelCity($event)" (onSelect)="handelSelectCity($event)"></slide-list>
+</ion-content>

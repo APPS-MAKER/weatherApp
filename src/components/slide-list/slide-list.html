@@ -1,0 +1,16 @@
+<ion-list class="slide-list">
+  <ion-item-sliding *ngFor="let item of recivedData">
+    <ion-item (click)="selectItem(item)">
+      <ion-icon class="side-icon" [name]="item.icon || 'ios-infinite'" item-start></ion-icon>
+      <h2>{{item.title}}</h2>
+      <p *ngIf="item.subtitle">{{item.subtitle}}</p>
+      <ion-icon *ngIf="item.selected" class="side-icon" name="md-checkmark" item-end></ion-icon>
+    </ion-item>
+    <ion-item-options>
+      <button ion-button color="danger" (click)="delItem(item)">
+        <ion-icon name="trash"></ion-icon>
+        <span style="font-size: 12px;">删除此项</span>
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>

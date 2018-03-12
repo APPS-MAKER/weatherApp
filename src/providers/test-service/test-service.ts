@@ -15,7 +15,7 @@ export class TestServiceProvider {
   }
 
   testHttp() {
-    const url = 'http://localhost:3000/api/testHTTP';
+    const url = 'http://localhost:3000/api/test';
     this.http.get(url).subscribe(data => {
       console.log(data);
     });
@@ -25,7 +25,6 @@ export class TestServiceProvider {
     const url = 'http://api.help.bj.cn/apis/ip';
     this.http.get(url).subscribe(data => {
       console.log(data);
-      alert(data['data'].city);
     });
   }
 }

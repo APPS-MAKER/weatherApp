@@ -38,63 +38,63 @@
   <!--</script>-->
   <!--高德地图-->
   <!-- gaode map -->
-  <script type="text/javascript"
-          src="http://webapi.amap.com/maps?v=1.4.4&key=5951fdba40b4ba0686a65795e05f1ac2&plugin=AMap.Geocoder"></script>
-  <script>
-    window.onload = function () {
-      //    h5坐标
-//      if (navigator.geolocation) {
-//        alert('浏览器支持html5 geolocation');
-//        navigator.geolocation.getCurrentPosition(onOK, one);
-//      } else {
-//        alert('浏览器不支持html5 geolocation');
-//      }
-//
-//      function onOK(position) {
-//        alert('进入ok');
-        const lnglatXY = [28.131348, 112.99518];
-        alert('经纬度坐标是' + lnglatXY[0] + ',,,' + lnglatXY[1]);
-//      function regeocoder() {  //逆地理编码
-        var geocoder = new AMap.Geocoder({
-          radius: 100000,
-          extensions: "all"
-        });
-        alert('new 这里出错了吗');
-        alert(geocoder);
-        geocoder.getAddress(lnglatXY, function (status, result) {
-          alert('getAddress这里出错了吗');
-          alert('status状态是' + status);
-          alert('result的info是' + result.info);
-          alert(result);
-//          if (status === 'complete') {
-            alert('status这里出错了吗');
-            geocoder_CallBack(result);
-//          }
-        });
-//      var marker = new AMap.Marker({  //加点
-//        map: map,
-//        position: lnglatXY
-//      });
-//      map.setFitView();
-//      }
-        function geocoder_CallBack(data) {
-          alert('callback这里出错了吗');
-          const address = data.regeocode.formattedAddress; //返回地址描述
-//        document.getElementById("result").innerHTML = address;
-          console.log(address);
-          alert(address);
-        }
-//      }
+  <!--<script type="text/javascript"-->
+          <!--src="http://webapi.amap.com/maps?v=1.4.4&key=5951fdba40b4ba0686a65795e05f1ac2&plugin=AMap.Geocoder"></script>-->
+  <!--<script>-->
+    <!--window.onload = function () {-->
+      <!--//    h5坐标-->
+<!--//      if (navigator.geolocation) {-->
+<!--//        alert('浏览器支持html5 geolocation');-->
+<!--//        navigator.geolocation.getCurrentPosition(onOK, one);-->
+<!--//      } else {-->
+<!--//        alert('浏览器不支持html5 geolocation');-->
+<!--//      }-->
+<!--//-->
+<!--//      function onOK(position) {-->
+<!--//        alert('进入ok');-->
+        <!--const lnglatXY = [28.131348, 112.99518];-->
+        <!--alert('经纬度坐标是' + lnglatXY[0] + ',,,' + lnglatXY[1]);-->
+<!--//      function regeocoder() {  //逆地理编码-->
+        <!--var geocoder = new AMap.Geocoder({-->
+          <!--radius: 100000,-->
+          <!--extensions: "all"-->
+        <!--});-->
+        <!--alert('new 这里出错了吗');-->
+        <!--alert(geocoder);-->
+        <!--geocoder.getAddress(lnglatXY, function (status, result) {-->
+          <!--alert('getAddress这里出错了吗');-->
+          <!--alert('status状态是' + status);-->
+          <!--alert('result的info是' + result.info);-->
+          <!--alert(result);-->
+<!--//          if (status === 'complete') {-->
+            <!--alert('status这里出错了吗');-->
+            <!--geocoder_CallBack(result);-->
+<!--//          }-->
+        <!--});-->
+<!--//      var marker = new AMap.Marker({  //加点-->
+<!--//        map: map,-->
+<!--//        position: lnglatXY-->
+<!--//      });-->
+<!--//      map.setFitView();-->
+<!--//      }-->
+        <!--function geocoder_CallBack(data) {-->
+          <!--alert('callback这里出错了吗');-->
+          <!--const address = data.regeocode.formattedAddress; //返回地址描述-->
+<!--//        document.getElementById("result").innerHTML = address;-->
+          <!--console.log(address);-->
+          <!--alert(address);-->
+        <!--}-->
+<!--//      }-->
 
-      function one(e) {
-        alert('进入出错了');
-        console.log(e);
-      }
-    }
+      <!--function one(e) {-->
+        <!--alert('进入出错了');-->
+        <!--console.log(e);-->
+      <!--}-->
+    <!--}-->
 
-    //    const myAMap = AMap.Geocoder.getLocation;
-    //    console.log(myAMap);
-  </script>
+    <!--//    const myAMap = AMap.Geocoder.getLocation;-->
+    <!--//    console.log(myAMap);-->
+  <!--</script>-->
   <!--
    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=您申请的key值&plugin=AMap.Geocoder"></script>
   <script type="text/javascript">

@@ -1,10 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>今日天气</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <button ion-button (click)="goLocationPage()">当前定位城市：{{cityInfo.city}}</button>
   <h2>ionic及angular基础!</h2>
   <h4>1、觉得ionic的组件丑/不好控制就删除，不强制要求，比如header这种麻烦又不好改的东西。如果要ionic的组件，在控制台找到相应类名，在组件的scss文件中重新编写覆盖</h4>
   <p>
@@ -17,14 +18,12 @@
     3、这是调用的自定义组件，
     用 ionic-cli 生成即可，已经配置好，直接使用标签
   </h4>
-  <init></init>
   <h4>4、测试跳转页面</h4>
-  <button ion-button (click)="goTestPage()">跳转到测试页面</button>
   <h4>5、自定义管道测试，会将数字除以2返回</h4>
   <p>{{ 6546 | testPipe}}</p>
   <h4>6、使用自定义的 provider（angular中的service），效果请查看控制台，实现请查看home.ts，直接用cli生成</h4>
   <h4>7、用ionic脚手架生成页面时，删除自动添加的@IonicPage装饰器及相应目录下的**.module.ts，不使用懒加载页面</h4>
   <h4>测试翻译插件</h4>
   <p>{{'你好' | translate}}</p>
-  <p>IP定位是：{{window.myLocation}}</p>
+  <p>IP定位似乎不准，后期考虑更换定位方式</p>
 </ion-content>
