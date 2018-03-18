@@ -2,8 +2,8 @@ page-city-ctr {
   ion-app.md .scroll-content {
     padding: 0;
   }
-  .item-md.item-block .item-inner, .list-ios .item-block .item-inner{
-    border-bottom: none;
+  .item-md.item-block .item-inner, .item-block .item-inner{
+    border-bottom: none !important;
   }
   ion-item-sliding .item {
     border-bottom: 0.55px solid #c8c7cc;;

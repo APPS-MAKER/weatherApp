@@ -38,7 +38,14 @@ export class SearchCityPage {
       return;
     }
     this.location.searchCity(this.keyWord).subscribe(res => {
-      this.searchRes = res;
+      console.log(res);
+      if(res.state === 200){
+        alert(res.msg);
+        this.searchRes = res.data;
+      } else {
+        alert(res.msg);
+        console.log(res.err);
+      }
     });
   }
 

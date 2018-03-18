@@ -24,14 +24,16 @@ import {SearchCityPage} from "../pages/search-city/search-city";
 
 // 自定义管道（pipe）引用
 import {PipesModule} from "../pipes/pipes.module";
-// providers(service)引用
-import {TestServiceProvider} from '../providers/test-service/test-service';
 
 // 翻译插件
 import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // 定位service
 import { LocationProvider } from '../providers/location/location';
+// 事项service
+import { EventsProvider } from '../providers/events/events';
+import { UserProvider } from '../providers/user/user';
+
 
 export function createTranslateHttpLoader(http) {
   // http = new http();
@@ -81,8 +83,9 @@ export function createTranslateHttpLoader(http) {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TestServiceProvider,
-    LocationProvider
+    LocationProvider,
+    EventsProvider,
+    UserProvider
   ]
 })
 export class AppModule {

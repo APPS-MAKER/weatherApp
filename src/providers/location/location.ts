@@ -19,24 +19,26 @@ class CityInfo {
 export class LocationProvider {
 
   constructor(public http: HttpClient) {
-    // 生成时重置IP定位信息
   }
 
+  // 返回历史城市信息
   getHistoryCity(): CityInfo[] {
     return JSON.parse(localStorage.getItem('historyCityInfo')) || [];
   }
 
+  // 删除历史城市信息
   delHistoryCity(cityInfo: CityInfo) {
     let nowHistory = this.getHistoryCity();
     let filterArr = nowHistory.filter(item => item.city !== cityInfo.city);
     localStorage.setItem('historyCityInfo', JSON.stringify(filterArr));
-    // return filterArr;
   }
 
+  // 在城市管理页面中，选择历史城市
   selectHistoryCity(cityInfo: CityInfo) {
     localStorage.setItem('localCityInfo', JSON.stringify(cityInfo));
   }
 
+  // 设置localStorage，现在选择城市信息及更新历史记录
   setStorage(cityInfo: CityInfo) {
     localStorage.setItem('localCityInfo', JSON.stringify(cityInfo));
     const history = this.getHistoryCity();
@@ -47,17 +49,16 @@ export class LocationProvider {
     }
   }
 
-  // 在localStorage中设置IP定位信息，用于在城市管理页面显示及切换
+  // 获取IP定位信息，并设置localStorage，返回ip定位信息
   setIPLocation() {
     return new Promise((resolve, reject) => {
       this.http.get('http://api.help.bj.cn/apis/ip').subscribe((res) => {
         if (res['data']['city']) {
           const info = {
             city: res['data']['city'],
-            code: res['data']['weathercode']
+            code: res['data']['code']
           };
           this.setStorage(info);
-          console.log(info);
           localStorage.setItem('IPCityInfo', JSON.stringify(info));
           resolve(info);
         } else {
@@ -67,7 +68,7 @@ export class LocationProvider {
     })
   }
 
-  // 订阅? - 当前定位信息
+  // 获取当前定位信息或已选择的信息
   getCurrentLocationInfo() {
     return new Promise((resolve, reject) => {
       const localCityInfo = localStorage.getItem('localCityInfo');
@@ -94,32 +95,25 @@ export class LocationProvider {
     });
   }
 
-  setSelectCity(name: string) {
-    // 返回一个Promise？
-    return new Promise((resolve, reject) => {
-      this.getCodeByName(name).then((data) => {
-        const info = {
-          city: data['city'],
-          code: data['weathercode'],
-        };
-        this.setStorage(info);
-        // data.seted = true;
-        resolve(data);
-      }).catch((err) => {
-        reject(err)
-      })
-    })
+  // 获取城市天气代码XML
+  getXML(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/cityCodeXML');
   }
 
-  getCodeByName(name: string): any {
-    // 返回一个promise ？
+  // 城市搜索页面选择城市
+  setSelectCity(name: string) {
     return new Promise((resolve, reject) => {
       // 尝试获取XML
       try {
         // API获取XML数据
-        this.http.get('http://localhost:3000/api/cityCodeXML').subscribe(data => {
+        this.getXML().subscribe(res => {
+          if(res.state !== 200) {
+            alert(res.msg);
+            console.log(res.err);
+            return;
+          }
           // 转换为dom格式
-          const XMLDom = (new DOMParser()).parseFromString(data['data'], "text/xml");
+          const XMLDom = (new DOMParser()).parseFromString(res.data, "text/xml");
           // 根据节点名搜索获得天气代码
           let queryDom = XMLDom.querySelectorAll(`county[name='${name}']`)[0];
           // 没有找到 reject
@@ -129,10 +123,12 @@ export class LocationProvider {
           }
           const code = queryDom.getAttribute("weatherCode");
           // 找到resolve 返回信息对象
-          resolve({
+          const data = {
             city: name,
-            weathercode: code
-          })
+            code: Number(code)
+          };
+          this.setStorage(data);
+          resolve(data);
         });
       } catch (err) {
         // 捕获代码错误返回reject
@@ -140,5 +136,4 @@ export class LocationProvider {
       }
     });
   }
-
 }
