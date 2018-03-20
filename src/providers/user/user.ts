@@ -16,7 +16,7 @@ export class UserProvider {
 
   testApi() {
     // 登录时收集信息记录
-    /*this.http.post('http://localhost:3000/api/user/login', {
+    /*this.http.post('http://weather.ngxinglearn.xin/api/user/login', {
       account: 'testAccountByXING',
       machineCode: '66666666666666666666666'
     }).subscribe(data => {
@@ -24,7 +24,7 @@ export class UserProvider {
     });*/
 
     // 检测登录是否有效（是否在其它设备登录）
-    /*this.http.get('http://localhost:3000/api/user/check', {
+    /*this.http.get('http://weather.ngxinglearn.xin/api/user/check', {
       params: {
         account: 'testAccountByXING',
         machineCode: 'asdfasdfasf'

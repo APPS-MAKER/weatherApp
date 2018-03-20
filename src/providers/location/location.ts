@@ -88,7 +88,7 @@ export class LocationProvider {
 
   // 搜索城市  关键字-字符串       返回值-由字符串组成的数组
   searchCity(keyword: string): Observable<any> {
-    return this.http.get('http://localhost:3000/api/citySearch', {
+    return this.http.get('http://weather.ngxinglearn.xin/api/citySearch', {
       params: {
         keyword: keyword
       }
@@ -97,7 +97,7 @@ export class LocationProvider {
 
   // 获取城市天气代码XML
   getXML(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/cityCodeXML');
+    return this.http.get('http://weather.ngxinglearn.xin/api/cityCodeXML');
   }
 
   // 城市搜索页面选择城市
